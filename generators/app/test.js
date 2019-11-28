@@ -4,23 +4,64 @@ const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 
 describe("generator-javascript-directory:app", () => {
-  beforeAll(() => {
+  it("should create correct files when react: true, redux: true", () => {
     return helpers
       .run(path.join(__dirname, "./index.js"))
       .withPrompts({ react: true })
-      .withPrompts({ root: "src" });
+      .withPrompts({ redux: true })
+      .withPrompts({ root: "src" })
+      .then(() => {
+        assert.file([
+          "components/index.js",
+          "redux/index.js",
+          "redux/actions/index.js",
+          "redux/reducers/index.js",
+          "redux/selectors/index.js",
+          "redux/store/index.js",
+          "redux/store/test.js",
+          "shared/index.js"
+        ]);
+      });
   });
 
-  it("creates files", () => {
-    assert.file([
-      "index.js",
-      "components/index.js",
-      "redux/index.js",
-      "redux/actions/index.js",
-      "redux/reducers/index.js",
-      "redux/selectors/index.js",
-      "redux/store/index.js",
-      "redux/store/test.js"
-    ]);
+  it("should create correct files when react: false, redux: true", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .withPrompts({ react: false })
+      .withPrompts({ redux: true })
+      .withPrompts({ root: "src" })
+      .then(() => {
+        assert.file([
+          "redux/index.js",
+          "redux/actions/index.js",
+          "redux/reducers/index.js",
+          "redux/selectors/index.js",
+          "redux/store/index.js",
+          "redux/store/test.js",
+          "shared/index.js"
+        ]);
+      });
+  });
+
+  it("should create correct files when react: true, redux: false", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .withPrompts({ react: true })
+      .withPrompts({ redux: false })
+      .withPrompts({ root: "src" })
+      .then(() => {
+        assert.file(["components/index.js", "shared/index.js"]);
+      });
+  });
+
+  it("should create correct files when react: false, redux: false", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .withPrompts({ react: false })
+      .withPrompts({ redux: false })
+      .withPrompts({ root: "src" })
+      .then(() => {
+        assert.file(["shared/index.js"]);
+      });
   });
 });

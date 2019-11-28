@@ -22,6 +22,12 @@ module.exports = class extends Generator {
         default: true
       },
       {
+        type: "confirm",
+        name: "redux",
+        message: "Will this project include redux?",
+        default: true
+      },
+      {
         type: "input",
         name: "root",
         message: "What is the relative path to this projects route folder",
@@ -36,8 +42,15 @@ module.exports = class extends Generator {
 
   writing() {
     this.destinationRoot(this.props.root);
-    this.log(`using root ${this.props.root}`);
-    this.fs.copy(this.templatePath("react"), this.destinationPath());
+    if (this.props.react) {
+      this.fs.copy(this.templatePath("react"), this.destinationPath());
+    }
+
+    if (this.props.redux) {
+      this.fs.copy(this.templatePath("redux"), this.destinationPath());
+    }
+
+    this.fs.copy(this.templatePath("shared"), this.destinationPath());
   }
 
   install() {
