@@ -9,8 +9,11 @@ describe("generator-javascript-directory:app", () => {
       .run(path.join(__dirname, "./index.js"))
       .withPrompts({ type: "react" })
       .then(() => {
-        assert.file(["index.js"]);
-        assert.fileContent("test.js", /import MyComponent from ".\/index.js"/);
+        assert.file(["MyComponent/index.js"]);
+        assert.fileContent(
+          "MyComponent/test.js",
+          /import MyComponent from ".\/index.js"/
+        );
       });
   });
 
@@ -20,11 +23,34 @@ describe("generator-javascript-directory:app", () => {
       .withPrompts({ type: "react-native" })
       .then(() => {
         assert.fileContent(
-          "index.js",
+          "MyComponent/index.js",
           /import { StyleSheet, View } from "react-native"/
         );
-        assert.fileContent("test.js", /import MyComponent from ".\/index.js"/);
-        assert.fileContent("test.js", /describe\("MyComponent", \(\) => {/);
+        assert.fileContent(
+          "MyComponent/test.js",
+          /import MyComponent from ".\/index.js"/
+        );
+        assert.fileContent(
+          "MyComponent/test.js",
+          /describe\("MyComponent", \(\) => {/
+        );
+      });
+  });
+
+  it("should create correct files when path: inputs", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .withPrompts({ path: "inputs" })
+      .then(() => {
+        assert.file(["inputs/MyComponent/index.js"]);
+        assert.fileContent(
+          "inputs/MyComponent/test.js",
+          /import MyComponent from ".\/index.js"/
+        );
+        assert.fileContent(
+          "inputs/MyComponent/test.js",
+          /describe\("MyComponent", \(\) => {/
+        );
       });
   });
 });

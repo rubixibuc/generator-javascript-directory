@@ -36,25 +36,25 @@ module.exports = class extends BaseGenerator {
   }
 
   writing() {
-    this.destinationRoot(
-      `${this.props.root}/components/${this.props.path}/${this.props.component}`
+    this.destinationRoot(`${this.props.root}/components`);
+    this.fs.copyTpl(
+      this.templatePath(`${this.props.type}/index.js`),
+      this.destinationPath(
+        `./${this.props.path}/${this.props.component}/index.js`
+      ),
+      {
+        component: this.props.component
+      }
     );
-    if (this.props.type) {
-      this.fs.copyTpl(
-        this.templatePath(`${this.props.type}/index.js`),
-        this.destinationPath("index.js"),
-        {
-          component: this.props.component
-        }
-      );
-      this.fs.copyTpl(
-        this.templatePath(`${this.props.type}/test.js`),
-        this.destinationPath("test.js"),
-        {
-          component: this.props.component
-        }
-      );
-    }
+    this.fs.copyTpl(
+      this.templatePath(`${this.props.type}/test.js`),
+      this.destinationPath(
+        `./${this.props.path}/${this.props.component}/test.js`
+      ),
+      {
+        component: this.props.component
+      }
+    );
   }
 
   install() {
