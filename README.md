@@ -25,7 +25,7 @@ yo javascript-directory:component
 Generate a new redux component (action, reducer, selector)
 
 ```bash
-yo javascript-directory:component
+yo javascript-directory:redux
 ```
 
 ## License
