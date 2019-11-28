@@ -1,5 +1,5 @@
 # generator-javascript-directory [![Build Status](https://travis-ci.org/rubixibuc/generator-javascript-directory.svg?branch=master)](https://travis-ci.org/rubixibuc/generator-javascript-directory) [![Coverage Status](https://coveralls.io/repos/github/rubixibuc/generator-javascript-directory/badge.svg?branch=master)](https://coveralls.io/github/rubixibuc/generator-javascript-directory?branch=master)
-> Javascript best practice directory structur
+> Javascript best practice directory structure
 
 ## Installation
 
