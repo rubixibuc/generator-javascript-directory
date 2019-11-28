@@ -47,6 +47,15 @@ module.exports = class extends BaseGenerator {
         component: this.props.component
       }
     );
+    if (this.fs.exists("./index.js")) {
+      this.fs.append(
+        "./index.js",
+        `export { default as ${this.props.component} } from "./${
+          this.props.path ? `${this.props.path}/` : ""
+        }${this.props.component}"`
+      );
+    }
+
     this.fs.copyTpl(
       this.templatePath(`${this.props.type}/test.js`),
       this.destinationPath(

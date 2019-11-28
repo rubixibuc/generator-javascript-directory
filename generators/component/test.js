@@ -2,8 +2,9 @@
 const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
+const fs = require("fs-extra");
 
-describe("generator-javascript-directory:app", () => {
+describe("generator-javascript-directory:component", () => {
   it("should create correct files when all defaults", () => {
     return helpers.run(path.join(__dirname, "./index.js")).then(() => {
       assert.file(["MyComponent/index.js"]);
@@ -50,6 +51,25 @@ describe("generator-javascript-directory:app", () => {
         );
         assert.fileContent(
           "inputs/MyComponent/test.js",
+          /describe\("MyComponent", \(\) => {/
+        );
+      });
+  });
+
+  it("should append new component export to main index file", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .inTmpDir(dir => {
+        fs.ensureFileSync(path.join(dir, "src/components/index.js"));
+      })
+      .then(() => {
+        assert.file(["MyComponent/index.js"]);
+        assert.fileContent(
+          "MyComponent/test.js",
+          /import MyComponent from ".\/index.js"/
+        );
+        assert.fileContent(
+          "MyComponent/test.js",
           /describe\("MyComponent", \(\) => {/
         );
       });
