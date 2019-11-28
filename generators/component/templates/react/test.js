@@ -1,6 +1,6 @@
 import <%= component %> from "./index.js";
 
-describe("<%= component %>", () => {
+describe("<%= test %>", () => {
   it("should ...", () => {
 
   });

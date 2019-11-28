@@ -9,11 +9,12 @@ module.exports = class extends BaseGenerator {
           type: "list",
           name: "type",
           choices: [
-            { name: "react", value: "react" },
-            { name: "react-native", value: "react-native" }
+            { name: "action", value: "action" },
+            { name: "reducer", value: "reducer" },
+            { name: "selector", value: "selector" }
           ],
-          message: "Will this be a react or react native component",
-          default: "react"
+          message: "What kind of redux component will this be?",
+          default: "action"
         },
         {
           type: "input",
