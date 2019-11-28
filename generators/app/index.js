@@ -3,7 +3,7 @@ const BaseGenerator = require("../base");
 
 module.exports = class extends BaseGenerator {
   prompting() {
-    super.prompting().then(parentProps => {
+    return super.prompting().then(parentProps => {
       const prompts = [
         {
           type: "confirm",

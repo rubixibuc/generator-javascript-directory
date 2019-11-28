@@ -37,7 +37,7 @@ module.exports = class extends BaseGenerator {
   }
 
   writing() {
-    this.destinationRoot(`${this.props.root}/components`);
+    this.destinationRoot(`${this.props.root}/redux/${this.props.type}s`);
     this.fs.copyTpl(
       this.templatePath(`${this.props.type}/index.js`),
       this.destinationPath(

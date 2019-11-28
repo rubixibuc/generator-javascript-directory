@@ -28,6 +28,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.npmInstall();
+    // Nothing to install
   }
 };
