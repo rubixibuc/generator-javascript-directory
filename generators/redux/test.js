@@ -85,4 +85,28 @@ describe("generator-javascript-directory:redux", () => {
         );
       });
   });
+
+  it("should append new component export to main index file when path is provided", () => {
+    return helpers
+      .run(path.join(__dirname, "./index.js"))
+      .withPrompts({ path: "path" })
+      .inTmpDir(dir => {
+        fs.ensureFileSync(path.join(dir, "src/redux/actions/index.js"));
+      })
+      .then(() => {
+        assert.file(["path/MyComponent/index.js"]);
+        assert.fileContent(
+          "path/MyComponent/index.js",
+          /export default \(\) => \({}\)/
+        );
+        assert.fileContent(
+          "path/MyComponent/test.js",
+          /import MyComponent from ".\/index.js"/
+        );
+        assert.fileContent(
+          "path/MyComponent/test.js",
+          /describe\("MyComponent", \(\) => {/
+        );
+      });
+  });
 });
