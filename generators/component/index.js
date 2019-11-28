@@ -30,7 +30,6 @@ module.exports = class extends BaseGenerator {
       ];
 
       return this.prompt(prompts).then(props => {
-        console.log({ parentProps, props });
         this.props = { ...parentProps, ...props };
       });
     });
