@@ -1,46 +1,32 @@
 "use strict";
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
+const BaseGenerator = require("../base");
 
-module.exports = class extends Generator {
+module.exports = class extends BaseGenerator {
   prompting() {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(
-        `Welcome to the best practice ${chalk.red(
-          "generator-javascript-directory"
-        )} generator!`
-      )
-    );
+    super.prompting().then(parentProps => {
+      const prompts = [
+        {
+          type: "confirm",
+          name: "react",
+          message: "Will this be a react or react native project?",
+          default: true
+        },
+        {
+          type: "confirm",
+          name: "redux",
+          message: "Will this project include redux?",
+          default: true
+        }
+      ];
 
-    const prompts = [
-      {
-        type: "confirm",
-        name: "react",
-        message: "Will this be a react or react native project?",
-        default: true
-      },
-      {
-        type: "confirm",
-        name: "redux",
-        message: "Will this project include redux?",
-        default: true
-      },
-      {
-        type: "input",
-        name: "root",
-        message: "What is the relative path to this projects route folder",
-        default: "src"
-      }
-    ];
-
-    return this.prompt(prompts).then(props => {
-      this.props = props;
+      return this.prompt(prompts).then(props => {
+        this.props = { ...parentProps, ...props };
+      });
     });
   }
 
   writing() {
+    this.log(JSON.stringify(this.props));
     this.destinationRoot(this.props.root);
     if (this.props.react) {
       this.fs.copy(this.templatePath("react"), this.destinationPath());
@@ -54,6 +40,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies();
+    return super.install();
   }
 };

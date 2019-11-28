@@ -7,9 +7,7 @@ describe("generator-javascript-directory:app", () => {
   it("should create correct files when react: true, redux: true", () => {
     return helpers
       .run(path.join(__dirname, "./index.js"))
-      .withPrompts({ react: true })
-      .withPrompts({ redux: true })
-      .withPrompts({ root: "src" })
+      .withPrompts({ react: true, redux: true, root: "src" })
       .then(() => {
         assert.file([
           "components/index.js",
@@ -27,9 +25,7 @@ describe("generator-javascript-directory:app", () => {
   it("should create correct files when react: false, redux: true", () => {
     return helpers
       .run(path.join(__dirname, "./index.js"))
-      .withPrompts({ react: false })
-      .withPrompts({ redux: true })
-      .withPrompts({ root: "src" })
+      .withPrompts({ react: false, redux: true, root: "src" })
       .then(() => {
         assert.file([
           "redux/index.js",
@@ -46,9 +42,7 @@ describe("generator-javascript-directory:app", () => {
   it("should create correct files when react: true, redux: false", () => {
     return helpers
       .run(path.join(__dirname, "./index.js"))
-      .withPrompts({ react: true })
-      .withPrompts({ redux: false })
-      .withPrompts({ root: "src" })
+      .withPrompts({ react: true, redux: false, root: "src" })
       .then(() => {
         assert.file(["components/index.js", "shared/index.js"]);
       });
@@ -57,9 +51,7 @@ describe("generator-javascript-directory:app", () => {
   it("should create correct files when react: false, redux: false", () => {
     return helpers
       .run(path.join(__dirname, "./index.js"))
-      .withPrompts({ react: false })
-      .withPrompts({ redux: false })
-      .withPrompts({ root: "src" })
+      .withPrompts({ react: false, redux: false, root: "src" })
       .then(() => {
         assert.file(["shared/index.js"]);
       });
