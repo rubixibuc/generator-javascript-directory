@@ -1,4 +1,4 @@
-# generator-javascript-directory [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-javascript-directory [![Build Status](https://travis-ci.org/rubixibuc/generator-javascript-directory.svg?branch=master)](https://travis-ci.org/rubixibuc/generator-javascript-directory) [![Coverage Status](https://coveralls.io/repos/github/rubixibuc/generator-javascript-directory/badge.svg?branch=master)](https://coveralls.io/github/rubixibuc/generator-javascript-directory?branch=master)
 > Javascript best practice directory structur
 
 ## Installation
@@ -26,13 +26,3 @@ yo javascript-directory
 ## License
 
 unlicense © [rubixibuc]()
-
-
-[npm-image]: https://badge.fury.io/js/generator-javascript-directory.svg
-[npm-url]: https://npmjs.org/package/generator-javascript-directory
-[travis-image]: https://travis-ci.com//generator-javascript-directory.svg?branch=master
-[travis-url]: https://travis-ci.com//generator-javascript-directory
-[daviddm-image]: https://david-dm.org//generator-javascript-directory.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-javascript-directory
-[coveralls-image]: https://coveralls.io/repos//generator-javascript-directory/badge.svg
-[coveralls-url]: https://coveralls.io/r//generator-javascript-directory
